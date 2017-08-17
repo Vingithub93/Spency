@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+
+<suite name="Suite" parallel="none">
+    
+  <test name="firefox">
+      <parameter name="host" value="nothing"></parameter>
+      <parameter name="browserName" value="firefox"></parameter>
+          <classes>
+      <class name="in.spencers.Testscript.CheckTitle"/>
+    </classes>
+      
+  </test> <!-- Test -->
+  
+  
+    <test name="chrome">
+              <parameter name="host" value="nothing"></parameter>
+      <parameter name="browserName" value="chrome"></parameter>
+          <classes>
+      <class name="in.spencers.Testscript.CheckTitle"/>
+    </classes>
+      
+  </test> <!-- Test -->
+  
+</suite> <!-- Suite -->
