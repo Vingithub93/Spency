@@ -8,9 +8,11 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.testng.annotations.AfterTest;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Parameters;
 
+import in.spencers.Pageobject.SelectCityPopupPO;
 import io.github.bonigarcia.wdm.ChromeDriverManager;
 import io.github.bonigarcia.wdm.FirefoxDriverManager;
 
@@ -25,15 +27,6 @@ public abstract class BaseTest {
 	{
 	 if(!host.equals("nothing"))
 	  {
-		if(browserName.equals("firefox"))
-		{
-			FirefoxDriverManager.getInstance().setup();
-			
-		}
-		else if (browserName.equals("chrome"))
-		{
-			ChromeDriverManager.getInstance().setup();
-		}
 		URL url =new URL(host);
 		cap= new DesiredCapabilities();
 		cap.setBrowserName(browserName);
@@ -54,15 +47,35 @@ public abstract class BaseTest {
 			
 			
 	  }
+		try{
+			 driver.manage().window().maximize();
+		}
+		catch(Exception exe)
+		{
+			
+		}
 		
 	 driver.get("https://www.spencers.in");
 		
 	}
 	
-	@AfterTest
-	public void postCondition()
+	@BeforeMethod
+	public void selectCity()
 	{
-		driver.close();
+		
+		SelectCityPopupPO scp= new SelectCityPopupPO(driver);
+		scp.clickSelectCity();
+		scp.selectCity(Excel.getCellvalue("selectCity", 4, 0));
+		scp.enterPincode(Excel.getCellvalue("selectCity", 4, 1));
+		scp.clickSubmitBTN();
+		
+	}
+	
+	@AfterTest
+	public void postCondition() throws Exception
+	{
+		Thread.sleep(3000);
+//		driver.close();
 		
 	}
 

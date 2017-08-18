@@ -2,21 +2,17 @@ package in.spencers.Testscript;
 
 import org.testng.annotations.Test;
 
-import in.spencers.Baselib.BaseClass;
 import in.spencers.Baselib.BaseTest;
-import in.spencers.Baselib.Excel;
+import in.spencers.Pageobject.HomePage;
 
 public class CheckTitle extends BaseTest{
 	
+	
 	@Test
-	public void checkTitle()
+	public void moveToIcon()
 	{
-		BaseClass bc = new BaseClass(driver);
-		String eTitle=Excel.getCellvalue("verifyTitle", 1, 0);
-		System.out.println(eTitle);
-		bc.verifyTitle(Excel.getCellvalue("verifyTitle", 1, 0));
+		HomePage hp =new HomePage(driver);
+		hp.moveTosigninIcon();
 	}
-	
-	
 
 }
