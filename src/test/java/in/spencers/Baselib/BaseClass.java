@@ -22,6 +22,7 @@ public class BaseClass {
 	{
 		
 		SelectCityPopupPO scp= new SelectCityPopupPO(driver);
+		System.out.println("hello");
 		scp.clickSelectCity();
 		scp.selectCity(Excel.getCellvalue("selectCity", 4, 0));
 		scp.enterPincode(Excel.getCellvalue("selectCity", 4, 1));
